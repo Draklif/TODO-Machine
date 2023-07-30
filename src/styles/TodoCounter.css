@@ -1,0 +1,24 @@
+.TodoCounterTitle {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  padding-top: 48px;
+  color: #b27aff;
+  background-color: #393053;
+}
+
+.TodoCounter {
+  font-size: 24px;
+  text-align: center;
+  margin: 0 0 32px 0;
+  padding: 0 0 48px;
+  font-weight: normal;
+  color: #F5EFE7;
+  background-color: #393053;
+  border-radius: 0px 0px 16px 16px;
+}
+
+.TodoCounter span {
+  font-weight: bold;
+}
