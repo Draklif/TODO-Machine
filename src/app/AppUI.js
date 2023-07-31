@@ -5,6 +5,8 @@ import { TodoList } from '../components/TodoList';
 import { TodoItem } from '../components/TodoItem';
 import { TodoCreateBtn } from '../components/TodoCreateBtn';
 import { TodoGithubBtn } from '../components/TodoGithubBtn';
+import { HandlerError } from '../components/HandlerError';
+import { HandlerLoading } from '../components/HandlerLoading';
 
 function AppUI({
   loading,
@@ -25,8 +27,12 @@ function AppUI({
       />
 
       <TodoList>
-        {loading && <p style={{color: 'white', textAlign: 'center'}}>Estamos cargando...</p>}
-        {error && <p style={{color: 'white', textAlign: 'center'}}>¡Ocurrió un error!</p>}
+        {loading && <>
+          <HandlerLoading />
+          <HandlerLoading />
+          <HandlerLoading />
+        </> }
+        {error && <HandlerError /> }
         {searchedTodos?.map(todo => (
           <TodoItem
             key={todo.text}
