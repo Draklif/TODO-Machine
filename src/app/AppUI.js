@@ -7,24 +7,15 @@ import { TodoCreateBtn } from '../components/TodoCreateBtn';
 import { TodoGithubBtn } from '../components/TodoGithubBtn';
 import { HandlerError } from '../components/HandlerError';
 import { HandlerLoading } from '../components/HandlerLoading';
+import { TodoContext } from '../context/Context';
 
-function AppUI({
-  loading,
-  error,
-  completedTodos,
-  totalTodos,
-  searchValue,
-  setSearchValue,
-  searchedTodos,
-  modifyTodo
-}) {
+function AppUI() {
+  const { loading, error, searchedTodos, modifyTodo } = React.useContext(TodoContext)
+
   return (
     <>
-      <TodoCounter completed={completedTodos} total={totalTodos} />
-      <TodoSearch 
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+      <TodoCounter />
+      <TodoSearch />
 
       <TodoList>
         {loading && <>
