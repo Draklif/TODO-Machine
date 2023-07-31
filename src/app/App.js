@@ -1,11 +1,6 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { TodoCreateBtn } from './TodoCreateBtn';
-import { TodoGithubBtn } from './TodoGithubBtn';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { AppUI } from './AppUI';
 
 const ACTUAL_VERSION = 'TODOS_DRAKLIF_V1'
 // const defaultTodos = [
@@ -16,7 +11,12 @@ const ACTUAL_VERSION = 'TODOS_DRAKLIF_V1'
 // ]
 
 function App() {
-  const [todos, saveTodos] = useLocalStorage(ACTUAL_VERSION, [])
+  const { 
+    item: todos, 
+    saveItem: saveTodos,
+    loading,
+    error 
+  } = useLocalStorage(ACTUAL_VERSION, [])
   const [searchValue, setSearchValue] = React.useState('')
 
   const completedTodos = todos?.filter(todo => !!todo.completed).length
@@ -35,31 +35,17 @@ function App() {
   }
 
   return (
-    <>
-      <TodoCounter completed={completedTodos} total={totalTodos} />
-      <TodoSearch 
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
-      <TodoList>
-        {searchedTodos?.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onUpdate={() => modifyTodo(todo.text)}
-            onDelete={() => modifyTodo(todo.text, 'DELETE')}
-          />
-        ))}
-      </TodoList>
-
-      <p style={{color: '#ffddff', textAlign: 'center'}}>Made with ❤ by Jose M. Rentería</p>
-      
-      <TodoCreateBtn />
-      <TodoGithubBtn />
-    </>
-  );
+    <AppUI 
+      loading = { loading }
+      error = { error }
+      completedTodos={ completedTodos }
+      totalTodos={ totalTodos }
+      searchValue={ searchValue }
+      setSearchValue={ setSearchValue }
+      searchedTodos={ searchedTodos }
+      modifyTodo={ modifyTodo }
+    />
+  )
 }
 
 export default App;
