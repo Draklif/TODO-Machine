@@ -2,7 +2,13 @@ import '../styles/TodoCreateBtn.css';
 
 function TodoCreateBtn() {
   return (
-    <button className="TodoCreateBtn">+</button>
+    <button className="TodoCreateBtn" 
+    onClick={
+      (event) => {
+        console.log(event.target)
+      }
+    }
+    >+</button>
   );
 }
 

@@ -14,17 +14,42 @@ const defaultTodos = [
 ];
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos)
+  const [searchValue, setSearchValue] = React.useState('')
+
+  const completedTodos = todos.filter(todo => !!todo.completed).length
+  const totalTodos = todos.length
+  const searchedTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchValue.toLowerCase()))
+
+  const updateTodo = (selectedTodoText) => {
+    const updatedTodos = [...todos]
+    const indexTodo = updatedTodos.findIndex(todo => todo.text === selectedTodoText)
+    updatedTodos[indexTodo].completed = !updatedTodos[indexTodo].completed
+    setTodos(updatedTodos)
+  }
+  const deleteTodo = (selectedTodoText) => {
+    const updatedTodos = [...todos]
+    const indexTodo = updatedTodos.findIndex(todo => todo.text === selectedTodoText)
+    updatedTodos.splice(indexTodo, 1)
+    setTodos(updatedTodos)
+  }
+
   return (
     <>
-      <TodoCounter completed={16} total={25} />
-      <TodoSearch />
+      <TodoCounter completed={completedTodos} total={totalTodos} />
+      <TodoSearch 
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
 
       <TodoList>
-        {defaultTodos.map(todo => (
+        {searchedTodos.map(todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onUpdate={() => updateTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
