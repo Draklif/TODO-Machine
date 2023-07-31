@@ -32,37 +32,3 @@
 .TodoItem-p--complete {
   text-decoration: line-through;
 }
-
-.Icon {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  width: 48px;
-  font-size: 24px;
-  font-weight: bold;
-  /* background-color: #CCC; */
-}
-
-.Icon-check {
-  position: absolute;
-  left: 12px;
-  transition: .3s ease;
-}
-.Icon-check--active {
-  color: #4caf50;
-}
-.Icon-check:hover {
-  transform: scale(1.2)
-}
-
-.Icon-delete {
-  position: absolute;
-  right: 0;
-  transition: .3s ease-in;
-}
-.Icon-delete:hover {
-  color: red;
-  transform: scale(1.2);
-}
