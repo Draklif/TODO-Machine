@@ -5,33 +5,33 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { TodoCreateBtn } from './TodoCreateBtn';
 import { TodoGithubBtn } from './TodoGithubBtn';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const defaultTodos = [
-  { text: 'Cortar cebolla', completed: true },
-  { text: 'Tomar el Curso de Intro a React.js', completed: false },
-  { text: 'Llorar con la Llorona', completed: false },
-  { text: 'LALALALALA', completed: false },
-];
+const ACTUAL_VERSION = 'TODOS_DRAKLIF_V1'
+// const defaultTodos = [
+//   { text: 'Cortar cebolla', completed: true },
+//   { text: 'Tomar el Curso de Intro a React.js', completed: false },
+//   { text: 'Llorar con la Llorona', completed: false },
+//   { text: 'Hacer las tareas', completed: false },
+// ]
 
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos)
+  const [todos, saveTodos] = useLocalStorage(ACTUAL_VERSION, [])
   const [searchValue, setSearchValue] = React.useState('')
 
-  const completedTodos = todos.filter(todo => !!todo.completed).length
-  const totalTodos = todos.length
-  const searchedTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchValue.toLowerCase()))
+  const completedTodos = todos?.filter(todo => !!todo.completed).length
+  const totalTodos = todos?.length
+  const searchedTodos = todos?.filter(todo => todo.text.toLowerCase().includes(searchValue.toLowerCase()))
 
-  const updateTodo = (selectedTodoText) => {
+  const modifyTodo = (selectedTodoText, type = 'UPDATE') => {
     const updatedTodos = [...todos]
     const indexTodo = updatedTodos.findIndex(todo => todo.text === selectedTodoText)
-    updatedTodos[indexTodo].completed = !updatedTodos[indexTodo].completed
-    setTodos(updatedTodos)
-  }
-  const deleteTodo = (selectedTodoText) => {
-    const updatedTodos = [...todos]
-    const indexTodo = updatedTodos.findIndex(todo => todo.text === selectedTodoText)
-    updatedTodos.splice(indexTodo, 1)
-    setTodos(updatedTodos)
+    if (type === 'DELETE') {
+      updatedTodos.splice(indexTodo, 1)
+    } else {
+      updatedTodos[indexTodo].completed = !updatedTodos[indexTodo].completed
+    }
+    saveTodos(updatedTodos)
   }
 
   return (
@@ -43,13 +43,13 @@ function App() {
       />
 
       <TodoList>
-        {searchedTodos.map(todo => (
+        {searchedTodos?.map(todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
-            onUpdate={() => updateTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
+            onUpdate={() => modifyTodo(todo.text)}
+            onDelete={() => modifyTodo(todo.text, 'DELETE')}
           />
         ))}
       </TodoList>
