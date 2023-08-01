@@ -5,6 +5,7 @@ import { TodoList } from '../components/TodoList';
 import { TodoItem } from '../components/TodoItem';
 import { TodoCreateBtn } from '../components/TodoCreateBtn';
 import { TodoGithubBtn } from '../components/TodoGithubBtn';
+import { TodoForm } from '../components/TodoForm';
 import { HandlerError } from '../components/HandlerError';
 import { HandlerLoading } from '../components/HandlerLoading';
 import { Modal } from '../components/Modal';
@@ -43,7 +44,7 @@ function AppUI() {
 
       {openModal && (
         <Modal>
-          Funcionalidad de agregar TODOs
+          <TodoForm />
         </Modal>
       )}
     </>
