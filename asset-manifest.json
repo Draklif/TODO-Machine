@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Plat-CursoReact/static/css/main.38600a71.css",
-    "main.js": "/Plat-CursoReact/static/js/main.d22225cd.js",
-    "index.html": "/Plat-CursoReact/index.html",
-    "main.38600a71.css.map": "/Plat-CursoReact/static/css/main.38600a71.css.map",
-    "main.d22225cd.js.map": "/Plat-CursoReact/static/js/main.d22225cd.js.map"
+    "main.css": "/TODO-Machine/static/css/main.38600a71.css",
+    "main.js": "/TODO-Machine/static/js/main.d22225cd.js",
+    "index.html": "/TODO-Machine/index.html",
+    "main.38600a71.css.map": "/TODO-Machine/static/css/main.38600a71.css.map",
+    "main.d22225cd.js.map": "/TODO-Machine/static/js/main.d22225cd.js.map"
   },
   "entrypoints": [
     "static/css/main.38600a71.css",
