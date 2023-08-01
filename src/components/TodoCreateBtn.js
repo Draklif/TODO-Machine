@@ -1,11 +1,11 @@
 import '../styles/TodoCreateBtn.css';
 
-function TodoCreateBtn() {
+function TodoCreateBtn({ setOpenModal }) {
   return (
     <button className="TodoCreateBtn" 
     onClick={
-      (event) => {
-        console.log(event.target)
+      () => {
+        setOpenModal(state => !state)
       }
     }
     >+</button>

@@ -7,10 +7,11 @@ import { TodoCreateBtn } from '../components/TodoCreateBtn';
 import { TodoGithubBtn } from '../components/TodoGithubBtn';
 import { HandlerError } from '../components/HandlerError';
 import { HandlerLoading } from '../components/HandlerLoading';
+import { Modal } from '../components/Modal';
 import { TodoContext } from '../context/Context';
 
 function AppUI() {
-  const { loading, error, searchedTodos, modifyTodo } = React.useContext(TodoContext)
+  const { loading, error, searchedTodos, modifyTodo, openModal, setOpenModal } = React.useContext(TodoContext)
 
   return (
     <>
@@ -37,8 +38,14 @@ function AppUI() {
 
       <p style={{color: '#ffddff', textAlign: 'center'}}>Made with ❤ by Jose M. Rentería</p>
       
-      <TodoCreateBtn />
+      <TodoCreateBtn setOpenModal = { setOpenModal } />
       <TodoGithubBtn />
+
+      {openModal && (
+        <Modal>
+          Funcionalidad de agregar TODOs
+        </Modal>
+      )}
     </>
   )
 }
